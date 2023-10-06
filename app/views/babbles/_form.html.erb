@@ -1,0 +1,22 @@
+<%= form_with(model: babble) do |form| %>
+  <% if babble.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(babble.errors.count, "error") %> prohibited this babble from being saved:</h2>
+
+      <ul>
+        <% babble.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :babble, style: "display: block" %>
+    <%= form.text_area :babble %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

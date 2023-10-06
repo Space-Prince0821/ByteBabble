@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @babble %>
+
+<div>
+  <%= link_to "Edit this babble", edit_babble_path(@babble) %> |
+  <%= link_to "Back to babbles", babbles_path %>
+
+  <%= button_to "Destroy this babble", @babble, method: :delete %>
+</div>
