@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Babbles</h1>
-
-<div id="babbles">
-  <% @babbles.each do |babble| %>
-    <%= render babble %>
-    <p>
-      <%= link_to "Show this babble", babble %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New babble", new_babble_path %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <%= render 'trends' %>
+      <%= render 'feed' %>
+      <%= render 'who-to-follow' %>
+    </div>
+  </div>
+</section>

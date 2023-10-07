@@ -3,7 +3,8 @@ class BabblesController < ApplicationController
 
   # GET /babbles or /babbles.json
   def index
-    @babbles = Babble.all
+    @babbles = Babble.all.order("created_at DESC")
+    @babble = Babble.new
   end
 
   # GET /babbles/1 or /babbles/1.json
