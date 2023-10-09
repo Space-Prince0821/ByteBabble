@@ -1,25 +1,49 @@
 <nav class="navbar is-primary">
-    <div class="navbar-brand">
-        <%= link_to root_path, class: "navbar-item" do %>
-            <h1 class="title is-5">ByteBabble</h1>
-        <% end %>
+  <div class="navbar-brand">
+    <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-5">ByteBabble</h1>
+    <% end %>
 
-        <div class="navbar-burger buger" data-target="navbarExample">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="navbarExample" class="navbar-menu">
-            <div class="navbar-end">
-                <div class="field is-grouped">
-                    <p class="control">
-                        <%= link_to "New Babble", new_babble_path, class: "button is-info is-inverted" %>
-                    </p>
-
-                    <p class="control">Sign Up</p>
-                </div>
-            </div>
-        </div>
+    <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+        <%= link_to root_path, class: "navbar-start" do %>
+            <h3 class="title is-6 navbar-item">Home</h3>
+        <% end %>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+            <% if user_signed_in? %>
+                <p class="control">
+                    <%= link_to "New Babble", new_babble_path, class: "button is-info is-inverted" %>
+                </p>
+
+                <p class="control">
+                    <%= link_to current_user.name, edit_user_registration_path, class: "button is-primary" %>
+                </p>
+
+                <p>
+                    <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "button is-primary" %>
+                </p>
+            <% else %>
+                <p class="control">
+                    <%= link_to "Log in", new_user_session_path, class: "button is-primary" %>
+                </p>
+
+                <p class="control">
+                    <%= link_to "Sign Up", new_user_registration_path, class: "button is-primary" %>
+                </p>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>

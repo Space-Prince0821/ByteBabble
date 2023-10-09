@@ -28,4 +28,15 @@
 
     <%= yield %>
   </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const colorToggleButton = document.getElementById("colorToggle");
+      const body = document.body;
+
+      colorToggleButton.addEventListener("click", function () {
+        body.classList.toggle("alt-color");
+      });
+    });
+  </script>
 </html>

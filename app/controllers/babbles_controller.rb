@@ -1,5 +1,6 @@
 class BabblesController < ApplicationController
   before_action :set_babble, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /babbles or /babbles.json
   def index
@@ -13,7 +14,7 @@ class BabblesController < ApplicationController
 
   # GET /babbles/new
   def new
-    @babble = Babble.new
+    @babble = current_user.babbles.build
   end
 
   # GET /babbles/1/edit
@@ -22,11 +23,11 @@ class BabblesController < ApplicationController
 
   # POST /babbles or /babbles.json
   def create
-    @babble = Babble.new(babble_params)
+    @babble = current_user.babbles.build(babble_params)
 
     respond_to do |format|
       if @babble.save
-        format.html { redirect_to babble_url(@babble), notice: "Babble was successfully created." }
+        format.html { redirect_to root_path, notice: "Babble was successfully created." }
         format.json { render :show, status: :created, location: @babble }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +67,6 @@ class BabblesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def babble_params
-      params.require(:babble).permit(:babble)
+      params.require(:babble).permit(:babble, attachments: [])
     end
 end
